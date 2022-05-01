@@ -43,4 +43,8 @@ if (!(Test-Path bwaishotgun.exe)) {
 Copy-Item _game.toml game.toml
 Copy-Item _shotgun.toml shotgun.toml
 
-Start-Process -FilePath BWAIShotgun.exe -Wait -Passthru
+#download and install java 8
+if (!(Test-Path jre-8u331-windows-i586.exe)) {
+    Invoke-WebRequest 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=246263_165374ff4ea84ef0bbd821706e29b123' -OutFile jre-8u331-windows-i586.exe
+}
+Start-Process -FilePath jre-8u331-windows-i586.exe -ArgumentList "/s" -Wait -Passthru
